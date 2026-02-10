@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Skonis World School</title>
+</head>
+<body style="font-family:Arial; background:#f2f6ff; padding:20px;">
+
+<h1>Skonis World School</h1>
+<h3>Student Business – Online Order Form</h3>
+
+<form id="orderForm">
+Category:<br><input id="category"><br><br>
+Product:<br><input id="product"><br><br>
+Quantity:<br><input id="quantity" type="number"><br><br>
+Name:<br><input id="name"><br><br>
+Phone:<br><input id="phone"><br><br>
+Address:<br><textarea id="address"></textarea><br><br>
+<button type="submit">Place Order</button>
+</form>
+
+<p id="msg" style="color:green;"></p>
+
+<script>
+orderForm.onsubmit = function(e){
+e.preventDefault();
+fetch("https://script.google.com/macros/s/AKfycbw5Fd5Q_Ka_6VqmadzxdRCaHo-otDTsZoZENkmLpXoXZ2yuV70uGKDU5rBVxnWH_xM6vA/exec",{
+method:"POST",
+body:JSON.stringify({
+category:category.value,
+product:product.value,
+quantity:quantity.value,
+name:name.value,
+phone:phone.value,
+address:address.value
+})
+}).then(()=>{
+msg.innerText="Order submitted successfully!";
+orderForm.reset();
+});
+};
+</script>
+
+</body>
+</html>
